@@ -9,5 +9,5 @@ jobs:
     runs-on: windows
     steps:
       - name: Print Hello World!
-        run: echo:"Hello World!"
+        run: print("Hello World!")
       
