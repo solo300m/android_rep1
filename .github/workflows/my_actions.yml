@@ -6,8 +6,8 @@ on:
       -master
 jobs:
   my_testing:
-    runs-on: windows
+    runs-on: ubuntu-latest
     steps:
       - name: Print Hello World!
-        run: print("Hello World!")
+        run: echo "Hello World!"
       
