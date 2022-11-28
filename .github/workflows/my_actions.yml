@@ -1,0 +1,13 @@
+name: myGitHubAction
+
+on:
+  push:
+    branches: 
+      -master
+jobs:
+  my_testing:
+    runs-on: windows
+    steps:
+      - name: Print Hello World!
+        run: echo:"Hello World!"
+      
