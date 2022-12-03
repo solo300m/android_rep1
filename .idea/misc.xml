@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable-ru-rRU-w600dp-h600dp/turn_right.xml" value="0.1" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable-ru-rRU/turn_right.xml" value="0.1" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable-ru/turn_right.xml" value="0.1" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.124" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_launcher_background.xml" value="0.124" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.13" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.13" />
       </map>
     </option>
   </component>
@@ -12,5 +21,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2" />
+      </ProjectState>
+    </option>
   </component>
 </project>
