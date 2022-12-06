@@ -4,5 +4,8 @@
     <string name="Hi_Sergey">Hi Sergey!</string>
     <string name="logo_netology">Logotype of Netology</string>
     <string name="menu">Menu</string>
+    <string name="like_str">like sing</string>
+    <string name="share_str">share sing</string>
+    <string name="views_str">views sing</string>
     <string name="present_text">hi is the author this application. In is more, and more an information about this application. </string>
 </resources>

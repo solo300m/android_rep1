@@ -6,4 +6,7 @@
     <string name="logo_netology">Логотип Нетологии</string>
     <string name="present_text">он является автором этого приложения. И еще много много информации об этом приложении.</string>
     <string name="menu">меню</string>
+    <string name="like_str">знак нравится</string>
+    <string name="share_str">знак цитируемости</string>
+    <string name="views_str">знак сейчас смотрят</string>
 </resources>
