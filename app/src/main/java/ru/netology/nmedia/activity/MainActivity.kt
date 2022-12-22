@@ -1,12 +1,13 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import android.widget.ImageButton
+import ru.netology.nmedia.R
+import ru.netology.nmedia.adapter.PostAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.dto.ThousandView
+import ru.netology.nmedia.databinding.CartPostBinding
+
 import ru.netology.nmedia.presentation.PostViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -17,10 +18,42 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val adapter = PostAdapter{
+            viewModel.likeById(it.id)
+        }
+        binding.list.adapter = adapter
         viewModel.data.observe(this){
-            post->
-            with(binding) {
+            posts-> adapter.submitList(posts)/*adapter.list = posts*/
+
+            /*Закоментированный текс сохранен для последующего изучения и отработки на других проектах*/
+            /*Для обучения эволюции проекта*/
+            /*binding.container.removeAllViews()
+            posts.map { post ->
+                CartPostBinding.inflate(layoutInflater, binding.container, true).apply {
+                    greetings.text = post.author
+                    published.text = post.published
+                    content.text = post.content
+                    likeCount.text = post.likes.toString()
+                    shareCount.text = post.share.toString()
+                    viewsCount.text = post.view.toString()
+                    like.setImageResource(
+                        if(post.likeByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
+                    )
+                    like.setOnClickListener{
+                        viewModel.likeById(post.id)
+                    }
+                    sharesimbol.setOnClickListener {
+                        post.share++
+                        shareCount.text = post.share.toString()
+                    }
+
+                    views.setOnClickListener {
+                        post.view++
+                        viewsCount.text = post.view.toString()
+                    }
+                }.root*/
+            }
+            /*with(binding) {
                 greetings.text = post.author
                 published.text = post.published
                 content.text = post.content
@@ -49,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                     viewsCount.text = post.view.toString()
                 }
 
-            }
+            }*/
         }
         /*val post = Post(
             1,
@@ -99,5 +132,5 @@ class MainActivity : AppCompatActivity() {
 
         }*/
 
-    }
+    //}
 }
