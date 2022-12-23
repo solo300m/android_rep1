@@ -11,8 +11,12 @@ import ru.netology.nmedia.dto.Post
 
 
 typealias OnLikeListener = (post:Post) -> Unit
+typealias OnShareListener = (post:Post) -> Unit
+typealias OnViewListener = (post:Post) -> Unit
 
-class PostAdapter (private val onLikeListener: OnLikeListener):
+class PostAdapter (private val onLikeListener: OnLikeListener,
+                   private val onShareListener: OnShareListener,
+                    private val onViewListener: OnLikeListener):
     ListAdapter<Post,PostViewHolder>(PostDiffCallback()){
     /*var list = emptyList<Post>()
     set(value){
@@ -22,7 +26,7 @@ class PostAdapter (private val onLikeListener: OnLikeListener):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CartPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, onLikeListener)
+        return PostViewHolder(binding, onLikeListener, onShareListener, onViewListener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
@@ -38,7 +42,9 @@ class PostAdapter (private val onLikeListener: OnLikeListener):
 
 class PostViewHolder (
     private val binding: CartPostBinding,
-    private val onLikeListener: OnLikeListener /* = (post: ru.netology.nmedia.dto.Post) -> kotlin.Unit */
+    private val onLikeListener: OnLikeListener, /* = (post: ru.netology.nmedia.dto.Post) -> kotlin.Unit */
+    private val onShareListener: OnShareListener, /* = (post: ru.netology.nmedia.dto.Post) -> kotlin.Unit */
+    private val onViewListener: OnLikeListener /* = (post: ru.netology.nmedia.dto.Post) -> kotlin.Unit */
         ):RecyclerView.ViewHolder(binding.root){
             fun bind(post: Post){
                 binding.apply {
@@ -58,12 +64,14 @@ class PostViewHolder (
                         onLikeListener(post)
                     }
                     sharesimbol.setOnClickListener {
-                        post.share++
+                        onShareListener(post)
+                        /*post.share++*/
                         shareCount.text = post.share.toString()
                     }
 
                     views.setOnClickListener {
-                        post.view++
+                        onViewListener(post)
+                        /*post.view++*/
                         viewsCount.text = post.view.toString()
                     }
                 }

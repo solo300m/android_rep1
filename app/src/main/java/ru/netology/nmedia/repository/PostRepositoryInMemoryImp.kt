@@ -119,4 +119,23 @@ class PostRepositoryInMemoryImp : PostRepository {
         }
         data.value = posts
     }
+    override fun shareById(id: Long){
+        for(i in posts.indices){
+            if(posts[i].id == id){
+                posts[i].share++
+                //posts[i] = it.copy()
+                //data.value = posts
+            }
+        }
+        data.value = posts
+    }
+
+    override fun viewById(id: Long) {
+        for(i in posts.indices){
+            if(posts[i].id == id) {
+                posts[i].view++
+            }
+        }
+        data.value = posts
+    }
 }
