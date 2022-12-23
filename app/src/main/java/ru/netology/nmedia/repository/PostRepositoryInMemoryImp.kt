@@ -8,7 +8,8 @@ import ru.netology.nmedia.presentation.PostRepository
 
 class PostRepositoryInMemoryImp : PostRepository {
 
-    private var post = Post(
+    private var posts = listOf(
+        Post(
         1,
         "Нетология. Университет интернет-профессий будущего",
         "21 мая в 18:36",
@@ -22,14 +23,119 @@ class PostRepositoryInMemoryImp : PostRepository {
         ThousandView(10),
         ThousandView(999),
         ThousandView(15000000)
+        ),
+        Post(
+            2,
+            "Нетология. Университет интернет-профессий будущего",
+            "20 апреля в 18:36",
+            "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
+                    "чтобы иметь возможность обнаруживать изменения набора данных в пакетах во время расчета макета. " +
+                    "Это избавляет LayoutManager от отслеживания изменений адаптера для расчета анимации. " +
+                    "Это также помогает повысить производительность, поскольку все привязки представлений выполняются одновременно, " +
+                    "и исключаются ненужные привязки. " +
+                    "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            false,
+            ThousandView(5),
+            ThousandView(5),
+            ThousandView(15)
+        ),
+        Post(
+            3,
+            "Нетология. Университет интернет-профессий будущего",
+            "20 апреля в 18:36",
+            "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
+                    "чтобы иметь возможность обнаруживать изменения набора данных в пакетах во время расчета макета. " +
+                    "Это избавляет LayoutManager от отслеживания изменений адаптера для расчета анимации. " +
+                    "Это также помогает повысить производительность, поскольку все привязки представлений выполняются одновременно, " +
+                    "и исключаются ненужные привязки. " +
+                    "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            false,
+            ThousandView(2),
+            ThousandView(3),
+            ThousandView(10)
+        ),
+        Post(
+            4,
+            "Нетология. Университет интернет-профессий будущего",
+            "20 апреля в 18:36",
+            "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
+                    "чтобы иметь возможность обнаруживать изменения набора данных в пакетах во время расчета макета. " +
+                    "Это избавляет LayoutManager от отслеживания изменений адаптера для расчета анимации. " +
+                    "Это также помогает повысить производительность, поскольку все привязки представлений выполняются одновременно, " +
+                    "и исключаются ненужные привязки. " +
+                    "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            false,
+            ThousandView(2),
+            ThousandView(3),
+            ThousandView(10)
+        ),
+        Post(
+            5,
+            "Нетология. Университет интернет-профессий будущего",
+            "20 апреля в 18:36",
+            "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
+                    "чтобы иметь возможность обнаруживать изменения набора данных в пакетах во время расчета макета. " +
+                    "Это избавляет LayoutManager от отслеживания изменений адаптера для расчета анимации. " +
+                    "Это также помогает повысить производительность, поскольку все привязки представлений выполняются одновременно, " +
+                    "и исключаются ненужные привязки. " +
+                    "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            false,
+            ThousandView(2),
+            ThousandView(3),
+            ThousandView(10)
+        ),
+        Post(
+            6,
+            "Нетология. Университет интернет-профессий будущего",
+            "20 апреля в 18:36",
+            "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
+                    "чтобы иметь возможность обнаруживать изменения набора данных в пакетах во время расчета макета. " +
+                    "Это избавляет LayoutManager от отслеживания изменений адаптера для расчета анимации. " +
+                    "Это также помогает повысить производительность, поскольку все привязки представлений выполняются одновременно, " +
+                    "и исключаются ненужные привязки. " +
+                    "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            false,
+            ThousandView(2),
+            ThousandView(3),
+            ThousandView(10)
+        )
     )
+    private val data = MutableLiveData(posts)
 
-    private val data = MutableLiveData(post)
+    override fun getAll(): LiveData<List<Post>> = data
 
-    override fun get(): LiveData<Post> =data
+    override fun likeById(id:Long) {
+        posts = posts.map {
+            if(it.id != id) it
+            else {
+                if(it.likeByMe){
+                    it.likes.number--
+                }else{
+                    it.likes.number++
+                }
+                it.copy(likeByMe = !it.likeByMe)
 
-    override fun like() {
-        post = post.copy(likeByMe = !post.likeByMe)
-        data.value = post
+            }
+        }
+        data.value = posts
+    }
+    override fun shareById(id: Long){
+        for(i in posts.indices){
+            if(posts[i].id == id){
+                posts[i].share++
+                //posts[i] = it.copy()
+                //data.value = posts
+            }
+        }
+        data.value = posts
+    }
+
+    override fun viewById(id: Long) {
+        for(i in posts.indices){
+            if(posts[i].id == id) {
+                posts[i].view++
+            }
+        }
+        data.value = posts
     }
 }
