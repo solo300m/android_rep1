@@ -9,4 +9,7 @@
     <string name="like_str">знак нравится</string>
     <string name="share_str">знак цитируемости</string>
     <string name="views_str">знак сейчас смотрят</string>
+    <string name="menu_edit">Редактировать</string>
+    <string name="menu_remove">Удалить</string>
+    <string name="menu_save">Сохранить изменения</string>
 </resources>

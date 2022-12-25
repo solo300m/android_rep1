@@ -2,30 +2,72 @@ package ru.netology.nmedia.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import ru.netology.nmedia.R
+import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.databinding.CartPostBinding
+import ru.netology.nmedia.dto.Post
 
 import ru.netology.nmedia.presentation.PostViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel:PostViewModel by viewModels()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val viewModel:PostViewModel by viewModels()
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val adapter = PostAdapter ({
-            viewModel.likeById(it.id)},
+        val adapter = PostAdapter (
+            {viewModel.likeById(it.id)},
             {viewModel.shareById(it.id)},
-            {viewModel.viewById(it.id)})
+            {viewModel.viewById(it.id)},
+            object : OnInteractionListener{
+                override fun onEdit(post: Post) {
+                    viewModel.edit(post)
+                }
+
+                override fun onRemove(post: Post) {
+                    viewModel.removeById(post.id)
+                }
+
+                override fun onSave(post: Post) {
+                    viewModel.save()
+                }
+            })
         binding.list.adapter = adapter
         viewModel.data.observe(this){
             posts-> adapter.submitList(posts)/*adapter.list = posts*/
+            }
+        viewModel.edited.observe(this){
+            post ->
+            if(post.id == 0L){
+                return@observe
+            }
+            with(binding.content){
+                requestFocus()
+                setText(post.content)
+            }
+        }
 
+        binding.save.setOnClickListener{
+            with(binding.content){
+                if(text.isNullOrBlank()){
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Content can't be empty",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
+                }
+                viewModel.changeContent(text.toString())
+                viewModel.save()
+            }
+        }
             /*Закоментированный текс сохранен для последующего изучения и отработки на других проектах*/
             /*Для обучения эволюции проекта*/
             /*binding.container.removeAllViews()
@@ -53,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                         viewsCount.text = post.view.toString()
                     }
                 }.root*/
-            }
+
             /*with(binding) {
                 greetings.text = post.author
                 published.text = post.published

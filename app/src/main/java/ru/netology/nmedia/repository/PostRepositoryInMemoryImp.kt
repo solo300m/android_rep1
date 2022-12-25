@@ -7,10 +7,10 @@ import ru.netology.nmedia.dto.ThousandView
 import ru.netology.nmedia.presentation.PostRepository
 
 class PostRepositoryInMemoryImp : PostRepository {
-
+    private var nextId = 1L
     private var posts = listOf(
         Post(
-        1,
+        id=nextId++,
         "Нетология. Университет интернет-профессий будущего",
         "21 мая в 18:36",
         "Привет, это новая Нетология! Когда-то Нетология начиналась с " +
@@ -25,7 +25,7 @@ class PostRepositoryInMemoryImp : PostRepository {
         ThousandView(15000000)
         ),
         Post(
-            2,
+            id=nextId++,
             "Нетология. Университет интернет-профессий будущего",
             "20 апреля в 18:36",
             "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
@@ -40,7 +40,7 @@ class PostRepositoryInMemoryImp : PostRepository {
             ThousandView(15)
         ),
         Post(
-            3,
+            id=nextId++,
             "Нетология. Университет интернет-профессий будущего",
             "20 апреля в 18:36",
             "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
@@ -55,7 +55,7 @@ class PostRepositoryInMemoryImp : PostRepository {
             ThousandView(10)
         ),
         Post(
-            4,
+            id=nextId++,
             "Нетология. Университет интернет-профессий будущего",
             "20 апреля в 18:36",
             "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
@@ -70,7 +70,7 @@ class PostRepositoryInMemoryImp : PostRepository {
             ThousandView(10)
         ),
         Post(
-            5,
+            id=nextId++,
             "Нетология. Университет интернет-профессий будущего",
             "20 апреля в 18:36",
             "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
@@ -85,7 +85,7 @@ class PostRepositoryInMemoryImp : PostRepository {
             ThousandView(10)
         ),
         Post(
-            6,
+            id=nextId++,
             "Нетология. Университет интернет-профессий будущего",
             "20 апреля в 18:36",
             "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
@@ -99,7 +99,7 @@ class PostRepositoryInMemoryImp : PostRepository {
             ThousandView(3),
             ThousandView(10)
         )
-    )
+    ).reversed()
     private val data = MutableLiveData(posts)
 
     override fun getAll(): LiveData<List<Post>> = data
@@ -135,6 +135,34 @@ class PostRepositoryInMemoryImp : PostRepository {
             if(posts[i].id == id) {
                 posts[i].view++
             }
+        }
+        data.value = posts
+    }
+
+    override fun removeById(id: Long) {
+        posts = posts.filter { it.id != id }
+        data.value = posts
+    }
+
+    override fun save(post: Post) {
+        if(post.id == 0L){
+            posts = listOf(
+                post.copy(
+                    id = nextId++,
+                    author = "Me",
+                    likeByMe = false,
+                    published = "now",
+                    content = "",
+                    likes = ThousandView(0),
+                    share = ThousandView(0),
+                    view = ThousandView(0)
+                )
+            )+ posts
+            data.value = posts
+            return
+        }
+        posts = posts.map{
+            if(it.id != post.id) it else it.copy(content = post.content)
         }
         data.value = posts
     }
