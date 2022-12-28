@@ -9,6 +9,8 @@
     <string name="views_str">views sing</string>
     <string name="menu_edit">Edit</string>
     <string name="menu_remove">Delete</string>
-    <string name="menu_save">Save</string>
+
+    <string name="description_post_like">Save</string>
+    <string name="post_text">New text</string>
     <string name="present_text">hi is the author this application. In is more, and more an information about this application. </string>
 </resources>

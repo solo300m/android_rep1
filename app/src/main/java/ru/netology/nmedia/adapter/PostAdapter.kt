@@ -21,6 +21,7 @@ interface OnInteractionListener {
     fun onEdit(post: Post) {}
     fun onRemove(post: Post) {}
     fun onSave(post: Post){}
+    fun onReEdit(post: Post){}
 }
 
 class PostAdapter(
@@ -107,8 +108,9 @@ class PostViewHolder(
                                 onInteractionListener.onEdit(post)
                                 true
                             }
-                            R.id.save -> {
-                                onInteractionListener.onSave(post)
+                            R.id.reedit -> {
+                                onInteractionListener.onReEdit(post)
+                                content.text = post.content
                                 true
                             }
                             else -> false

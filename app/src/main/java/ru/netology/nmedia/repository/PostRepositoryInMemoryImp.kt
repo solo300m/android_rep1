@@ -144,6 +144,21 @@ class PostRepositoryInMemoryImp : PostRepository {
         data.value = posts
     }
 
+    override fun reEdit(post: Post,rmData:MutableList<Post>) {
+        val id:Long = post.id
+        val cont:String = post.content
+        val rmPost:List<Post> = rmData.filter { it.id == id }
+        if(!rmPost.isEmpty()) {
+            for (i: Int in posts.indices) {
+                if (posts[i].id == id) {
+                    posts[i].content = rmPost[0].content
+                }
+            }
+            posts = posts
+        }
+        data.value = posts
+    }
+
     override fun save(post: Post) {
         if(post.id == 0L){
             posts = listOf(

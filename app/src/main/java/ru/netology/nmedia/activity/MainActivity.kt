@@ -2,6 +2,7 @@ package ru.netology.nmedia.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import ru.netology.nmedia.R
@@ -12,6 +13,7 @@ import ru.netology.nmedia.databinding.CartPostBinding
 import ru.netology.nmedia.dto.Post
 
 import ru.netology.nmedia.presentation.PostViewModel
+import ru.netology.nmedia.util.AndroidUtils
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +40,10 @@ class MainActivity : AppCompatActivity() {
                 override fun onSave(post: Post) {
                     viewModel.save()
                 }
+
+                override fun onReEdit(post: Post) {
+                    viewModel.reEdit(post)
+                }
             })
         binding.list.adapter = adapter
         viewModel.data.observe(this){
@@ -51,8 +57,10 @@ class MainActivity : AppCompatActivity() {
             with(binding.content){
                 requestFocus()
                 setText(post.content)
+                binding.undo.visibility = View.VISIBLE
             }
         }
+
 
         binding.save.setOnClickListener{
             with(binding.content){
@@ -66,6 +74,20 @@ class MainActivity : AppCompatActivity() {
                 }
                 viewModel.changeContent(text.toString())
                 viewModel.save()
+
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeyboard(this)
+                binding.undo.visibility = View.INVISIBLE
+            }
+        }
+
+        binding.undo.setOnClickListener {
+            with(binding.content){
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeyboard(this)
+                binding.undo.visibility = View.INVISIBLE
             }
         }
             /*Закоментированный текс сохранен для последующего изучения и отработки на других проектах*/
