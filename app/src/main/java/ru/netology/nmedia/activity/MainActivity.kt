@@ -25,10 +25,23 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val adapter = PostAdapter (
-            {viewModel.likeById(it.id)},
-            {viewModel.shareById(it.id)},
-            {viewModel.viewById(it.id)},
+            /*{viewModel.likeById(it.id)},*/
+            /*{viewModel.shareById(it.id)},
+            {viewModel.viewById(it.id)},*/
             object : OnInteractionListener{
+
+                override fun onShare(post: Post) {
+                    viewModel.shareById(post.id)
+                }
+
+                override fun onView(post: Post) {
+                    viewModel.viewById(post.id)
+                }
+
+                override fun onLike(post: Post) {
+                    viewModel.likeById(post.id)
+                }
+
                 override fun onEdit(post: Post) {
                     viewModel.edit(post)
                 }

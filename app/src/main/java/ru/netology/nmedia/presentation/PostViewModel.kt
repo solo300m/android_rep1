@@ -38,7 +38,7 @@ class PostViewModel:ViewModel() {
         else{
             for(i:Int in rmData.indices){
                 if(rmData[i].id == post.id) {
-                    rmData[i].copy(content = post.content)
+                    rmData[i].content = post.content
                     return
                 }
             }

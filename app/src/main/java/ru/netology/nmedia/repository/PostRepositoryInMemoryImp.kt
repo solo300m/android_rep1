@@ -154,7 +154,7 @@ class PostRepositoryInMemoryImp : PostRepository {
                     posts[i].content = rmPost[0].content
                 }
             }
-            posts = posts
+            //posts = posts
         }
         data.value = posts
     }
