@@ -7,9 +7,10 @@ import ru.netology.nmedia.dto.ThousandView
 import ru.netology.nmedia.presentation.PostRepository
 
 class PostRepositoryInMemoryImp : PostRepository {
-
-    private var post = Post(
-        1,
+    private var nextId = 1L
+    private var posts = listOf(
+        Post(
+        id=nextId++,
         "Нетология. Университет интернет-профессий будущего",
         "21 мая в 18:36",
         "Привет, это новая Нетология! Когда-то Нетология начиналась с " +
@@ -22,14 +23,162 @@ class PostRepositoryInMemoryImp : PostRepository {
         ThousandView(10),
         ThousandView(999),
         ThousandView(15000000)
-    )
+        ),
+        Post(
+            id=nextId++,
+            "Нетология. Университет интернет-профессий будущего",
+            "20 апреля в 18:36",
+            "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
+                    "чтобы иметь возможность обнаруживать изменения набора данных в пакетах во время расчета макета. " +
+                    "Это избавляет LayoutManager от отслеживания изменений адаптера для расчета анимации. " +
+                    "Это также помогает повысить производительность, поскольку все привязки представлений выполняются одновременно, " +
+                    "и исключаются ненужные привязки. " +
+                    "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            false,
+            ThousandView(5),
+            ThousandView(5),
+            ThousandView(15)
+        ),
+        Post(
+            id=nextId++,
+            "Нетология. Университет интернет-профессий будущего",
+            "20 апреля в 18:36",
+            "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
+                    "чтобы иметь возможность обнаруживать изменения набора данных в пакетах во время расчета макета. " +
+                    "Это избавляет LayoutManager от отслеживания изменений адаптера для расчета анимации. " +
+                    "Это также помогает повысить производительность, поскольку все привязки представлений выполняются одновременно, " +
+                    "и исключаются ненужные привязки. " +
+                    "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            false,
+            ThousandView(2),
+            ThousandView(3),
+            ThousandView(10)
+        ),
+        Post(
+            id=nextId++,
+            "Нетология. Университет интернет-профессий будущего",
+            "20 апреля в 18:36",
+            "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
+                    "чтобы иметь возможность обнаруживать изменения набора данных в пакетах во время расчета макета. " +
+                    "Это избавляет LayoutManager от отслеживания изменений адаптера для расчета анимации. " +
+                    "Это также помогает повысить производительность, поскольку все привязки представлений выполняются одновременно, " +
+                    "и исключаются ненужные привязки. " +
+                    "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            false,
+            ThousandView(2),
+            ThousandView(3),
+            ThousandView(10)
+        ),
+        Post(
+            id=nextId++,
+            "Нетология. Университет интернет-профессий будущего",
+            "20 апреля в 18:36",
+            "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
+                    "чтобы иметь возможность обнаруживать изменения набора данных в пакетах во время расчета макета. " +
+                    "Это избавляет LayoutManager от отслеживания изменений адаптера для расчета анимации. " +
+                    "Это также помогает повысить производительность, поскольку все привязки представлений выполняются одновременно, " +
+                    "и исключаются ненужные привязки. " +
+                    "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            false,
+            ThousandView(2),
+            ThousandView(3),
+            ThousandView(10)
+        ),
+        Post(
+            id=nextId++,
+            "Нетология. Университет интернет-профессий будущего",
+            "20 апреля в 18:36",
+            "RecyclerView вводит дополнительный уровень абстракции между Adapterи LayoutManager, " +
+                    "чтобы иметь возможность обнаруживать изменения набора данных в пакетах во время расчета макета. " +
+                    "Это избавляет LayoutManager от отслеживания изменений адаптера для расчета анимации. " +
+                    "Это также помогает повысить производительность, поскольку все привязки представлений выполняются одновременно, " +
+                    "и исключаются ненужные привязки. " +
+                    "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            false,
+            ThousandView(2),
+            ThousandView(3),
+            ThousandView(10)
+        )
+    ).reversed()
+    private val data = MutableLiveData(posts)
 
-    private val data = MutableLiveData(post)
+    override fun getAll(): LiveData<List<Post>> = data
 
-    override fun get(): LiveData<Post> =data
+    override fun likeById(id:Long) {
+        posts = posts.map {
+            if(it.id != id) it
+            else {
+                if(it.likeByMe){
+                    it.likes.number--
+                }else{
+                    it.likes.number++
+                }
+                it.copy(likeByMe = !it.likeByMe)
 
-    override fun like() {
-        post = post.copy(likeByMe = !post.likeByMe)
-        data.value = post
+            }
+        }
+        data.value = posts
+    }
+    override fun shareById(id: Long){
+        for(i in posts.indices){
+            if(posts[i].id == id){
+                posts[i].share++
+                //posts[i] = it.copy()
+                //data.value = posts
+            }
+        }
+        data.value = posts
+    }
+
+    override fun viewById(id: Long) {
+        for(i in posts.indices){
+            if(posts[i].id == id) {
+                posts[i].view++
+            }
+        }
+        data.value = posts
+    }
+
+    override fun removeById(id: Long) {
+        posts = posts.filter { it.id != id }
+        data.value = posts
+    }
+
+    override fun reEdit(post: Post,rmData:MutableList<Post>) {
+        val id:Long = post.id
+        val cont:String = post.content
+        val rmPost:List<Post> = rmData.filter { it.id == id }
+        if(!rmPost.isEmpty()) {
+            for (i: Int in posts.indices) {
+                if (posts[i].id == id) {
+                    posts[i].content = rmPost[0].content
+                }
+            }
+            //posts = posts
+        }
+        data.value = posts
+    }
+
+    override fun save(post: Post) {
+        if(post.id == 0L){
+            posts = listOf(
+                post.copy(
+                    id = nextId++,
+                    author = "Me",
+                    likeByMe = false,
+                    published = "now",
+                    content = "",
+                    likes = ThousandView(0),
+                    share = ThousandView(0),
+                    view = ThousandView(0)
+                )
+            )+ posts
+            data.value = posts
+            return
+        }
+        posts = posts.map{
+            if(it.id != post.id) it else it.copy(content = post.content)
+        }
+        data.value = posts
     }
 }
