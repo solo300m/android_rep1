@@ -74,11 +74,13 @@ class PostViewHolder(
             likeCount.text = post.likes.toString()
             shareCount.text = post.share.toString()
             viewsCount.text = post.view.toString()
-            if (post.likeByMe) {
+            like.isCheckable = post.likeByMe
+            //like.text = "${post.likes}"
+           /* if (post.likeByMe) {
                 like.setImageResource(R.drawable.ic_baseline_favorite_24)
             } else {
                 like.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-            }
+            }*/
             like.setOnClickListener {
                 //onLikeListener(post)
                 onInteractionListener.onLike(post)
