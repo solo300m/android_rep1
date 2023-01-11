@@ -12,6 +12,7 @@ private val empty = Post(
     author = "",
     published = "",
     likeByMe = false,
+    strVideo = "",
     likes = ThousandView(0),
     share = ThousandView(0),
     view = ThousandView(0)

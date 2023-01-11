@@ -8,6 +8,6 @@ data class Post (
     var likeByMe: Boolean,
     var likes: ThousandView,
     var share: ThousandView,
-    var view: ThousandView
-
+    var view: ThousandView,
+    var strVideo:String?
 )

@@ -97,15 +97,15 @@ class MainActivity : AppCompatActivity() {
             if(post.id == 0L){
                 return@observe
             }
-            with(binding.content){
+           /* with(binding.content){
                 requestFocus()
                 setText(post.content)
                 binding.undo.visibility = View.VISIBLE
-            }
+            }*/
         }
 
 
-        binding.save.setOnClickListener{
+       // binding.save.setOnClickListener{
             /*with(binding.content){
                 if(text.isNullOrBlank()){
                     Toast.makeText(
@@ -123,16 +123,16 @@ class MainActivity : AppCompatActivity() {
                 AndroidUtils.hideKeyboard(this)
                 binding.undo.visibility = View.INVISIBLE
             }*/
-        }
+        //}
 
-        binding.undo.setOnClickListener {
+        /*binding.undo.setOnClickListener {
             with(binding.content){
                 setText("")
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)
                 binding.undo.visibility = View.INVISIBLE
             }
-        }
+        }*/
         val newPostLauncher = registerForActivityResult(NewPostResultContract()){
             result ->
             result ?:return@registerForActivityResult

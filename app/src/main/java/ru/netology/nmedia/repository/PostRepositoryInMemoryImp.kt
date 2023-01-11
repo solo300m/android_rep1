@@ -20,10 +20,11 @@ class PostRepositoryInMemoryImp : PostRepository {
                 "что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. " +
                 "Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
         false,
+
         ThousandView(10),
         ThousandView(999),
-        ThousandView(15000000)
-
+        ThousandView(15000000),
+            ""
         ),
         Post(
             id=nextId++,
@@ -38,7 +39,8 @@ class PostRepositoryInMemoryImp : PostRepository {
             false,
             ThousandView(5),
             ThousandView(5),
-            ThousandView(15)
+            ThousandView(15),
+            ""
         ),
         Post(
             id=nextId++,
@@ -53,7 +55,8 @@ class PostRepositoryInMemoryImp : PostRepository {
             false,
             ThousandView(2),
             ThousandView(3),
-            ThousandView(10)
+            ThousandView(10),
+            ""
         ),
         Post(
             id=nextId++,
@@ -68,7 +71,8 @@ class PostRepositoryInMemoryImp : PostRepository {
             false,
             ThousandView(2),
             ThousandView(3),
-            ThousandView(10)
+            ThousandView(10),
+            ""
         ),
         Post(
             id=nextId++,
@@ -83,7 +87,8 @@ class PostRepositoryInMemoryImp : PostRepository {
             false,
             ThousandView(2),
             ThousandView(3),
-            ThousandView(10)
+            ThousandView(10),
+            ""
         ),
         Post(
             id=nextId++,
@@ -98,7 +103,8 @@ class PostRepositoryInMemoryImp : PostRepository {
             false,
             ThousandView(2),
             ThousandView(3),
-            ThousandView(10)
+            ThousandView(10),
+            ""
         )
     ).reversed()
     private val data = MutableLiveData(posts)
@@ -172,7 +178,7 @@ class PostRepositoryInMemoryImp : PostRepository {
                     likes = ThousandView(0),
                     share = ThousandView(0),
                     view = ThousandView(0),
-
+                    strVideo = ""
                 )
             )+ posts
             data.value = posts
@@ -189,7 +195,7 @@ class PostRepositoryInMemoryImp : PostRepository {
                     likes = ThousandView(0),
                     share = ThousandView(0),
                     view = ThousandView(0),
-
+                    strVideo = ""
                 )
             )+ posts
             data.value = posts
