@@ -1,5 +1,6 @@
 package ru.netology.nmedia.presentation
 
+import androidx.annotation.Nullable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.dto.Post
@@ -22,17 +23,28 @@ class PostViewModel:ViewModel() {
     val edited = MutableLiveData(empty)
     var rmData:MutableList<Post> = mutableListOf()
 
+    fun save(post:Post?){
+        if(post == null) {
+            edited.value?.let {
+                repository.save(it)
+            }
+        }
+        else
+            repository.save(post)
+        edited.value = empty
+    }
     fun save(){
-        edited.value?.let{
+        edited.value?.let {
             repository.save(it)
         }
         edited.value = empty
     }
+
     fun reEdit(post: Post){
         repository.reEdit(post, rmData)
     }
     fun edit(post: Post){
-        edited.value = post
+        //edited.value = post
         if(rmData.isEmpty())
             rmData.add(post)
         else{

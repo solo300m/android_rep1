@@ -3,6 +3,8 @@ package ru.netology.nmedia.adapter
 import android.system.Os.remove
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.Checkable
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -71,18 +73,13 @@ class PostViewHolder(
             greetings.text = post.author
             published.text = post.published
             content.text = post.content
-            likeCount.text = post.likes.toString()
+            //likeCount.text = post.likes.toString()
             shareCount.text = post.share.toString()
             viewsCount.text = post.view.toString()
-            like.isCheckable = post.likeByMe
-            //like.text = "${post.likes}"
-           /* if (post.likeByMe) {
-                like.setImageResource(R.drawable.ic_baseline_favorite_24)
-            } else {
-                like.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-            }*/
+            like.isChecked = post.likeByMe
+            like.text = "${post.likes}"
+
             like.setOnClickListener {
-                //onLikeListener(post)
                 onInteractionListener.onLike(post)
             }
             sharesimbol.setOnClickListener {

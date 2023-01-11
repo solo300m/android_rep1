@@ -160,7 +160,7 @@ class PostRepositoryInMemoryImp : PostRepository {
     }
 
     override fun save(post: Post) {
-        if(post.id == 0L){
+        if(post.id == 0L && post.content.isNullOrBlank()){
             posts = listOf(
                 post.copy(
                     id = nextId++,
@@ -168,6 +168,22 @@ class PostRepositoryInMemoryImp : PostRepository {
                     likeByMe = false,
                     published = "now",
                     content = "",
+                    likes = ThousandView(0),
+                    share = ThousandView(0),
+                    view = ThousandView(0)
+                )
+            )+ posts
+            data.value = posts
+            return
+        }
+        else if(post.id == 0L && !post.content.isNullOrBlank()){
+            posts = listOf(
+                post.copy(
+                    id = nextId++,
+                    author = "Me",
+                    likeByMe = false,
+                    published = "now",
+                    content = post.content,
                     likes = ThousandView(0),
                     share = ThousandView(0),
                     view = ThousandView(0)

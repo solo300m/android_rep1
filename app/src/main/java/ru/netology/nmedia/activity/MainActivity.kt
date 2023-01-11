@@ -1,27 +1,40 @@
 package ru.netology.nmedia.activity
 
+import android.content.ClipData.newIntent
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.launch
 import androidx.activity.viewModels
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostAdapter
+import ru.netology.nmedia.databinding.ActivityEditPostBinding
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.databinding.CartPostBinding
+import ru.netology.nmedia.dto.EditPostResultContract
+import ru.netology.nmedia.dto.NewPostResultContract
 import ru.netology.nmedia.dto.Post
 
 import ru.netology.nmedia.presentation.PostViewModel
 import ru.netology.nmedia.util.AndroidUtils
+import ru.netology.nmedia.activity.EditPost as ActivityEditPost
 
 class MainActivity : AppCompatActivity() {
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModel:PostViewModel by viewModels()
+
+        val intentR = registerForActivityResult(EditPostResultContract()){
+                result ->
+            result ?:return@registerForActivityResult
+            viewModel.changeContent(result.content)
+            viewModel.save(result)
+        }
+
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val adapter = PostAdapter (
@@ -32,6 +45,14 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onShare(post: Post) {
                     viewModel.shareById(post.id)
+
+                    val intent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, post.content)
+                        type = "text/plain"
+                    }
+                    val shareIntent = Intent.createChooser(intent,getString(R.string.chooser_share_post))
+                    startActivity(shareIntent)
                 }
 
                 override fun onView(post: Post) {
@@ -43,7 +64,16 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onEdit(post: Post) {
+                    /*val intentRed = Intent(this@MainActivity,ActivityEditPost::class.java).apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, post.content)
+                        type = "text/plain"
+                    }
+                    startActivity(intentRed)*/
                     viewModel.edit(post)
+
+                    intentR.launch(post)
+
                 }
 
                 override fun onRemove(post: Post) {
@@ -76,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.save.setOnClickListener{
-            with(binding.content){
+            /*with(binding.content){
                 if(text.isNullOrBlank()){
                     Toast.makeText(
                         this@MainActivity,
@@ -92,7 +122,7 @@ class MainActivity : AppCompatActivity() {
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)
                 binding.undo.visibility = View.INVISIBLE
-            }
+            }*/
         }
 
         binding.undo.setOnClickListener {
@@ -102,6 +132,15 @@ class MainActivity : AppCompatActivity() {
                 AndroidUtils.hideKeyboard(this)
                 binding.undo.visibility = View.INVISIBLE
             }
+        }
+        val newPostLauncher = registerForActivityResult(NewPostResultContract()){
+            result ->
+            result ?:return@registerForActivityResult
+            viewModel.changeContent(result)
+            viewModel.save()
+        }
+        binding.fab.setOnClickListener{
+            newPostLauncher.launch()
         }
             /*Закоментированный текс сохранен для последующего изучения и отработки на других проектах*/
             /*Для обучения эволюции проекта*/

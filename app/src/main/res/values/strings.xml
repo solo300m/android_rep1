@@ -13,4 +13,9 @@
     <string name="description_post_like">Save</string>
     <string name="post_text">New text</string>
     <string name="present_text">hi is the author this application. In is more, and more an information about this application. </string>
+    <string name="chooser_share_post">share post</string>
+    <string name="error_empty_content">ERROR: null or Blanck string</string>
+    <string name="description_post_save">Save New Post</string>
+    <string name="add_post">Add post</string>
+    <string name="chooser_edit_post">edited post</string>
 </resources>
