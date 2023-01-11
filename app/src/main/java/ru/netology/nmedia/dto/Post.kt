@@ -9,4 +9,5 @@ data class Post (
     var likes: ThousandView,
     var share: ThousandView,
     var view: ThousandView
+
 )

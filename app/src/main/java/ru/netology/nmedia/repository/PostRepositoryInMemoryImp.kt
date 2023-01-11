@@ -23,6 +23,7 @@ class PostRepositoryInMemoryImp : PostRepository {
         ThousandView(10),
         ThousandView(999),
         ThousandView(15000000)
+
         ),
         Post(
             id=nextId++,
@@ -170,7 +171,8 @@ class PostRepositoryInMemoryImp : PostRepository {
                     content = "",
                     likes = ThousandView(0),
                     share = ThousandView(0),
-                    view = ThousandView(0)
+                    view = ThousandView(0),
+
                 )
             )+ posts
             data.value = posts
@@ -186,7 +188,8 @@ class PostRepositoryInMemoryImp : PostRepository {
                     content = post.content,
                     likes = ThousandView(0),
                     share = ThousandView(0),
-                    view = ThousandView(0)
+                    view = ThousandView(0),
+
                 )
             )+ posts
             data.value = posts
