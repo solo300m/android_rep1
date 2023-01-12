@@ -24,6 +24,10 @@ class PostViewModel:ViewModel() {
     val edited = MutableLiveData(empty)
     var rmData:MutableList<Post> = mutableListOf()
 
+    fun videoById(post: Post){
+        repository.videoById(post)
+    }
+
     fun save(post:Post?){
         if(post == null) {
             edited.value?.let {

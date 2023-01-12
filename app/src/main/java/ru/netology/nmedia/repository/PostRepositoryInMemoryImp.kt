@@ -1,5 +1,6 @@
 package ru.netology.nmedia.repository
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dto.Post
@@ -24,7 +25,7 @@ class PostRepositoryInMemoryImp : PostRepository {
         ThousandView(10),
         ThousandView(999),
         ThousandView(15000000),
-            ""
+            "https://youtu.be/zVt3B427PPU"
         ),
         Post(
             id=nextId++,
@@ -40,7 +41,7 @@ class PostRepositoryInMemoryImp : PostRepository {
             ThousandView(5),
             ThousandView(5),
             ThousandView(15),
-            ""
+            "https://youtu.be/UEspHbiCkAc"
         ),
         Post(
             id=nextId++,
@@ -56,7 +57,7 @@ class PostRepositoryInMemoryImp : PostRepository {
             ThousandView(2),
             ThousandView(3),
             ThousandView(10),
-            ""
+            "https://youtu.be/P86JdaapRjo"
         ),
         Post(
             id=nextId++,
@@ -72,7 +73,7 @@ class PostRepositoryInMemoryImp : PostRepository {
             ThousandView(2),
             ThousandView(3),
             ThousandView(10),
-            ""
+            "https://youtu.be/Ckom3gf57Yw"
         ),
         Post(
             id=nextId++,
@@ -88,7 +89,7 @@ class PostRepositoryInMemoryImp : PostRepository {
             ThousandView(2),
             ThousandView(3),
             ThousandView(10),
-            ""
+            "https://youtu.be/tAGnKpE4NCI"
         ),
         Post(
             id=nextId++,
@@ -104,7 +105,7 @@ class PostRepositoryInMemoryImp : PostRepository {
             ThousandView(2),
             ThousandView(3),
             ThousandView(10),
-            ""
+            "https://youtu.be/8LhkyyCvUHk"
         )
     ).reversed()
     private val data = MutableLiveData(posts)
@@ -205,5 +206,9 @@ class PostRepositoryInMemoryImp : PostRepository {
             if(it.id != post.id) it else it.copy(content = post.content)
         }
         data.value = posts
+    }
+    override fun videoById(post: Post){
+
+
     }
 }

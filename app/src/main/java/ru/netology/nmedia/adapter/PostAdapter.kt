@@ -27,6 +27,7 @@ interface OnInteractionListener {
     fun onLike(post:Post){}
     fun onShare(post: Post){}
     fun onView(post: Post){}
+    fun onVideo(post:Post){}
 }
 
 class PostAdapter(
@@ -78,6 +79,10 @@ class PostViewHolder(
             viewsCount.text = post.view.toString()
             like.isChecked = post.likeByMe
             like.text = "${post.likes}"
+
+            video.setOnClickListener {
+                onInteractionListener.onVideo(post)
+            }
 
             like.setOnClickListener {
                 onInteractionListener.onLike(post)

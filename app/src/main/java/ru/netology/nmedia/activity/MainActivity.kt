@@ -2,9 +2,11 @@ package ru.netology.nmedia.activity
 
 import android.content.ClipData.newIntent
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.result.launch
 import androidx.activity.viewModels
@@ -42,6 +44,20 @@ class MainActivity : AppCompatActivity() {
             /*{viewModel.shareById(it.id)},
             {viewModel.viewById(it.id)},*/
             object : OnInteractionListener{
+                override fun onVideo(post: Post) {
+
+                    viewModel.videoById(post)
+                    if(post.strVideo.isNullOrBlank()) {
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Content is empty..." ,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }else{
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.strVideo))
+                        startActivity(intent)
+                    }
+                }
 
                 override fun onShare(post: Post) {
                     viewModel.shareById(post.id)
@@ -103,7 +119,6 @@ class MainActivity : AppCompatActivity() {
                 binding.undo.visibility = View.VISIBLE
             }*/
         }
-
 
        // binding.save.setOnClickListener{
             /*with(binding.content){
