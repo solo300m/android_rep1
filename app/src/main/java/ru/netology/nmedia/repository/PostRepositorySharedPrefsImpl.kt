@@ -113,7 +113,7 @@ class PostRepositorySharedPrefsImpl(context: Context) : PostRepository {
 
     override fun reEdit(post: Post, rmData: MutableList<Post>) {
         val id:Long = post.id
-        val cont:String = post.content
+        //val cont:String = post.content
         val rmPost:List<Post> = rmData.filter { it.id == id }
         if(!rmPost.isEmpty()) {
             for (i: Int in posts.indices) {
