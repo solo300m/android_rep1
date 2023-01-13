@@ -7,14 +7,25 @@
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable-ru-rRU/turn_right.xml" value="0.1" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable-ru/turn_right.xml" value="0.1" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.124" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.125" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.194" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.125" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_launcher_background.xml" value="0.124" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.13" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_like_24dp.xml" value="0.1" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_netology.xml" value="0.108" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/drawable/ic_outline_more_vert_24.xml" value="0.108" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout-land/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout-land/post_card_layout.xml" value="0.3140625" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout-sw600dp/post_card_layout.xml" value="0.4" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout/activity_edit_post.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout/activity_intent_hendler.xml" value="0.1" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout/activity_new_post.xml" value="0.264" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout/cart_post.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/layout/post_card_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/menu/options_post.xml" value="0.1" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
         <entry key="..\:/Users/090/AndroidStudioProjects/nMedia/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.13" />
       </map>
