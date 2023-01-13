@@ -25,7 +25,7 @@ class PostRepositoryInMemoryImp : PostRepository {
         ThousandView(10),
         ThousandView(999),
         ThousandView(15000000),
-            "https://youtu.be/zVt3B427PPU"
+            ""
         ),
         Post(
             id=nextId++,

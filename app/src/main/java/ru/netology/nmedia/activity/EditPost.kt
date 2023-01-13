@@ -33,7 +33,7 @@ class EditPost : AppCompatActivity() {
                 setResult(Activity.RESULT_CANCELED,intent)
             }else{
                 val editContent = binding.edited.text.toString()
-                intent.action = Intent.ACTION_SEND
+                //intent.action = Intent.ACTION_SEND
                 intent.putExtra(Intent.EXTRA_TEXT,editContent)
                 setResult(Activity.RESULT_OK,intent)
             }

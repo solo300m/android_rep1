@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.Checkable
 import android.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -80,8 +81,13 @@ class PostViewHolder(
             like.isChecked = post.likeByMe
             like.text = "${post.likes}"
 
-            video.setOnClickListener {
-                onInteractionListener.onVideo(post)
+
+            if (!post.strVideo.isNullOrBlank()) {
+                video.setOnClickListener {
+                    onInteractionListener.onVideo(post)
+                }
+            }else{
+                video.isVisible = false
             }
 
             like.setOnClickListener {
