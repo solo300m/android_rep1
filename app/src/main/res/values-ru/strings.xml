@@ -18,4 +18,5 @@
     <string name="description_post_save">Сохранить новый Пост</string>
     <string name="add_post">Добавить пост</string>
     <string name="chooser_edit_post">Редактировать пост</string>
+    <string name="hello_blank_fragment">Пустой фрагмент</string>
 </resources>
