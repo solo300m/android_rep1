@@ -5,8 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
 import ru.netology.nmedia.activity.EditPost
-import ru.netology.nmedia.activity.NewPostActivity
-import java.util.*
 
 class EditPostResultContract:ActivityResultContract<Post,Post?>() {
 

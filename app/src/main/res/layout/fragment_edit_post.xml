@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/fab_margin"
     tools:context=".activity.EditPost">
+
     <EditText
         android:id="@+id/edited"
         android:layout_width="wrap_content"

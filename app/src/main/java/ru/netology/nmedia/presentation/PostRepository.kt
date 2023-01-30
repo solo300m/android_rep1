@@ -10,7 +10,10 @@ interface PostRepository {
     fun shareById(id:Long)
     fun viewById(id: Long)
     fun removeById(id: Long)
-    fun save(post: Post)
-    fun reEdit(post:Post, rmData:MutableList<Post>)
+    fun save(post: Post, oldPost: Post)
+    fun edit(post: Post, str:String)
+    fun reEdit(post:Post)
     fun videoById(post: Post)
+    fun getPost(id: Long): Post?
+    fun clone(post:Post):Post?
 }

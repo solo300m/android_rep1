@@ -109,6 +109,7 @@ class PostRepositoryInMemoryImp : PostRepository {
         )
     ).reversed()
     private val data = MutableLiveData(posts)
+    private val rmData:ArrayList<Post> = arrayListOf()
 
     override fun getAll(): LiveData<List<Post>> = data
 
@@ -151,8 +152,30 @@ class PostRepositoryInMemoryImp : PostRepository {
         posts = posts.filter { it.id != id }
         data.value = posts
     }
+    override fun edit(post: Post, str:String) {
+        if(rmData.isEmpty())
+            /*for(i:Int in posts.indices){
+                rmData.add(posts[i])
+            }*/
+            rmData.add(post)
+        else{
+            for(i:Int in rmData.indices){
+                if(rmData[i].id == post.id) {
+                    rmData[i].content = str
+                    return
+                }
+            }
+            rmData.add(post)
+            for(i:Int in rmData.indices){
+                if(rmData[i].id == post.id) {
+                    rmData[i].content = str
+                    return
+                }
+            }
+        }
+    }
 
-    override fun reEdit(post: Post,rmData:MutableList<Post>) {
+    override fun reEdit(post: Post) {
         val id:Long = post.id
         //val cont:String = post.content
         val rmPost:List<Post> = rmData.filter { it.id == id }
@@ -167,7 +190,7 @@ class PostRepositoryInMemoryImp : PostRepository {
         data.value = posts
     }
 
-    override fun save(post: Post) {
+    override fun save(post: Post, oldPost:Post) {
         if(post.id == 0L && post.content.isNullOrBlank()){
             posts = listOf(
                 post.copy(
@@ -202,13 +225,50 @@ class PostRepositoryInMemoryImp : PostRepository {
             data.value = posts
             return
         }
+        //edit(post,post.content)
+        var reserv:Boolean = false
+        for(i:Int in rmData.indices){
+            if(rmData[i].id == oldPost.id){
+                rmData[i].content = oldPost.content
+                reserv = true
+                break
+            }
+        }
+        if(!reserv){
+            rmData.add(oldPost)
+        }
         posts = posts.map{
             if(it.id != post.id) it else it.copy(content = post.content)
         }
         data.value = posts
     }
+
     override fun videoById(post: Post){
 
 
+    }
+
+    override fun getPost(id: Long): Post? {
+        var post:Post? = null
+        for(ps:Post in posts){
+            if(ps.id == id) {
+                post = ps
+                break
+            }
+        }
+        if(post != null)
+            return post
+        else
+            return null
+    }
+
+    override fun clone(post: Post): Post? {
+        if(post != null){
+            return Post(post.id,post.author, post.published,
+            post.content, post.likeByMe, post.likes, post.share,
+            post.view, post.strVideo)
+        }
+        else
+            return null
     }
 }

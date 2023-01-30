@@ -18,14 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NMedia"
         tools:targetApi="31">
+
         <activity
-            android:name=".activity.EditPost"
-            android:exported="false" />
-        <activity
-            android:name=".activity.NewPostActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".activity.IntentHendlerActivity"
+            android:name=".activity.AppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -34,10 +29,7 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.MainActivity"
-            android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
