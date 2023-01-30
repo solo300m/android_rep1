@@ -49,7 +49,7 @@ class EditPost : Fragment() {
             }
             finish()*/
             viewModel.changeContent(binding.edited.text.toString())
-
+            viewModel.selected.value?.content = binding.edited.text.toString()
             //val post: Post? = viewModel.getPostBiId(id)
             /*if(post != null)
                 viewModel.edit(post)*/
